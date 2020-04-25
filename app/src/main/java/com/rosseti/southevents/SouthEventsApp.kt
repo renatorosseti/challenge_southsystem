@@ -7,5 +7,4 @@ import dagger.android.DaggerApplication
 class SouthEventsApp : DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<out SouthEventsApp> = DaggerAppComponent.builder().create(this)
-
 }

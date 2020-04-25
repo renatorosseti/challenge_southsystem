@@ -1,7 +1,7 @@
 package com.rosseti.southevents.di
 
-import com.rosseti.southevents.main.events.EventDetailsFragment
-import com.rosseti.southevents.main.events.EventLisFragment
+import com.rosseti.southevents.main.details.EventDetailsFragment
+import com.rosseti.southevents.main.events.EventsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -9,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBuilder {
 
     @ContributesAndroidInjector(modules = [AppModule::class])
-    abstract fun contributeEventListFragment(): EventLisFragment
+    abstract fun contributeEventListFragment(): EventsFragment
 
     @ContributesAndroidInjector(modules = [AppModule::class])
     abstract fun contributeEventDetailsFragment(): EventDetailsFragment

@@ -1,4 +1,4 @@
-package com.rosseti.southevents.main.events
+package com.rosseti.southevents.main.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

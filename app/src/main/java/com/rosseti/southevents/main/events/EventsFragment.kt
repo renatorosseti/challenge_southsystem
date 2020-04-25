@@ -10,7 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.rosseti.southevents.R
 
-class EventLisFragment : Fragment() {
+class EventsFragment : Fragment() {
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
