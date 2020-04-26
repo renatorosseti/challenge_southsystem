@@ -1,6 +1,7 @@
 package com.rosseti.southevents.di
 
 import com.rosseti.southevents.SouthEventsApp
+import com.rosseti.southevents.main.events.EventsViewModelModule
 import dagger.android.support.AndroidSupportInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
@@ -11,7 +12,8 @@ import dagger.Component
     AndroidSupportInjectionModule::class,
     AppModule::class,
     ActivityBuilder::class,
-    FragmentBuilder::class])
+    FragmentBuilder::class,
+    EventsViewModelModule::class])
 interface AppComponent : AndroidInjector<SouthEventsApp> {
 
     @Component.Builder

@@ -1,7 +1,6 @@
 package com.rosseti.southevents.main.details
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -9,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.rosseti.southevents.R
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_second.*
 
-class EventDetailsFragment : Fragment() {
+class EventDetailsFragment : DaggerFragment() {
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,

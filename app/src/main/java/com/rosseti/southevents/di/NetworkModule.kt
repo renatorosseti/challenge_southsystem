@@ -17,5 +17,4 @@ class NetworkModule {
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(Api::class.java)
-
 }
