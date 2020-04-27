@@ -4,57 +4,57 @@ import com.squareup.moshi.Json
 
 data class Event (
     @Json(name = "people")
-    private val people: List<Person>?,
+    val people: List<Person>?,
 
     @Json(name = "date")
-    private val date: Double?,
+    val date: Double?,
 
     @Json(name = "description")
-    private val description: String?,
+    val description: String?,
 
     @Json(name = "image")
-    private val image: String?,
+    val image: String,
 
     @Json(name = "longitude")
-    private val longitude: Double?,
+    val longitude: Double?,
 
     @Json(name = "latitude")
-    private val latitude: Double?,
+    val latitude: Double?,
 
     @Json(name = "price")
-    private val price: Double?,
+    val price: Double?,
 
     @Json(name = "title")
-    private val title: String?,
+    val title: String?,
 
     @Json(name = "id")
-    private val id: String?,
+    val id: String?,
 
     @Json(name = "cupons")
-    private val coupons: List<Coupon>?
+    val coupons: List<Coupon>?
 )
 
 class Person {
     @Json(name = "id")
-    private val id: String? = null
+    val id: String? = null
 
     @Json(name = "eventId")
-    private val eventId: String? = null
+    val eventId: String? = null
 
     @Json(name = "name")
-    private val name: String? = null
+    val name: String? = null
 
     @Json(name = "picture")
-    private val picture: String? = null
+    val picture: String? = null
 }
 
 class Coupon {
     @Json(name = "id")
-    private val id: String? = null
+    val id: String? = null
 
     @Json(name = "eventId")
-    private val eventId: String? = null
+    val eventId: String? = null
 
     @Json(name = "discount")
-    private val discount: Int? = null
+    val discount: Int? = null
 }

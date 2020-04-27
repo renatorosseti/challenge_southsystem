@@ -1,6 +1,9 @@
 package com.rosseti.southevents.di
 
+import com.rosseti.southevents.SouthEventsApp
 import com.rosseti.southevents.api.Api
+import com.rosseti.southevents.dialog.ProgressDialog
+import com.rosseti.southevents.util.NetworkUtil
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -17,4 +20,10 @@ class NetworkModule {
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(Api::class.java)
+
+    @Provides
+    fun providesNetworkUtil(application: SouthEventsApp) = NetworkUtil(application)
+
+    @Provides
+    fun providesProgressDialog() = ProgressDialog()
 }

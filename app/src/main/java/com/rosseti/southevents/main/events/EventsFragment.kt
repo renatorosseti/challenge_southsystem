@@ -4,16 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.rosseti.southevents.R
+import com.rosseti.southevents.dialog.ProgressDialog
+import com.rosseti.southevents.main.model.Event
+import com.rosseti.southevents.main.model.NoNetworkException
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_events.*
 import javax.inject.Inject
 
 class EventsFragment : DaggerFragment() {
+
+  @Inject
+  lateinit var progressDialog: ProgressDialog
 
   @Inject
   lateinit var viewModel: EventsViewModel
@@ -27,25 +34,46 @@ class EventsFragment : DaggerFragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    viewModel.eventsResponse.observe(viewLifecycleOwner, Observer {
-      when(it) {
-        is EventsViewState.ShowLoadingState -> {
+    setLayoutManager()
+    observeViewModel(view)
+    viewModel.fetchEvents()
+  }
 
+  private fun observeViewModel(view: View) {
+    var snackbar: Snackbar = Snackbar.make(view, R.string.error_request, Snackbar.LENGTH_LONG)
+    viewModel.response.observe(viewLifecycleOwner, Observer {
+      when (it) {
+        is EventsViewState.ShowLoadingState -> {
+          progressDialog.show(requireContext())
         }
         is EventsViewState.ShowContentFeed -> {
-
+          snackbar.dismiss()
+          progressDialog.hide()
+          updateAdapter(it.events)
         }
         is EventsViewState.ShowRequestError -> {
-          Snackbar.make(view, it.message, Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show()
+          progressDialog.hide()
+          snackbar = Snackbar.make(
+            view,
+            it.message,
+            if (it.networkException is NoNetworkException) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_INDEFINITE)
+          snackbar.setAction("Action", null).show()
         }
       }
-    })
-    viewModel.fetchEvents()
+      })
+  }
 
-    view.findViewById<Button>(R.id.button_first).setOnClickListener {
+  private fun setLayoutManager() {
+    recyclerView.layoutManager = LinearLayoutManager(context)
+  }
+
+  private fun updateAdapter(events: List<Event>) {
+    val mainAdapter = EventsAdapter(events)
+    recyclerView.adapter = mainAdapter
+    mainAdapter?.onItemClick = { it -> run {
       var bundle = bundleOf("data" to "Welcome to SouthEvents app.")
       findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
+    }
     }
   }
 }
