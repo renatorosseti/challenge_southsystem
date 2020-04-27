@@ -71,7 +71,15 @@ class EventsFragment : DaggerFragment() {
     val mainAdapter = EventsAdapter(events)
     recyclerView.adapter = mainAdapter
     mainAdapter?.onItemClick = { it -> run {
-      var bundle = bundleOf("data" to "Welcome to SouthEvents app.")
+      var bundle = bundleOf(
+        "title" to it.title,
+        "description" to it.description,
+        "image" to it.image,
+        "price" to it.price,
+        "latitude" to it.latitude,
+        "longitude" to it.longitude,
+        "date" to it.date
+      )
       findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
     }
     }

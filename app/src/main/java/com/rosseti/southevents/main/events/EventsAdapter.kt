@@ -1,6 +1,5 @@
 package com.rosseti.southevents.main.events
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -34,7 +33,6 @@ class EventsAdapter(
         }
 
         fun bind(event: Event) {
-            Log.i("ADAPTER","Image: ${event.image}")
             Glide.with(itemView)
                 .load(event.image)
                 .centerCrop()

@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.rosseti.southevents.R
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_event_details.*
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -16,11 +17,6 @@ class MainActivity : DaggerAppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
     setSupportActionBar(toolbar)
-
-    fab.setOnClickListener { view ->
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-          .setAction("Action", null).show()
-    }
     val navController = findNavController(R.id.nav_host_fragment)
 
     navController.addOnDestinationChangedListener(NavController.OnDestinationChangedListener { controller, destination, arguments ->
