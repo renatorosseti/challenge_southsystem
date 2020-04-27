@@ -12,7 +12,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 class NetworkModule {
-
     @Provides
     fun providesRetrofit(): Api = Retrofit.Builder()
             .baseUrl(Api.URL)

@@ -8,7 +8,6 @@ import io.reactivex.schedulers.Schedulers
 
 @Module
 class SchedulerModule {
-
     @Provides
     fun provideRxSchedulers() = AppRxSchedulers(
             database = Schedulers.single(),

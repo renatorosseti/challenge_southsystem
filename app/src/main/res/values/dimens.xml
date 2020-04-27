@@ -8,4 +8,5 @@
 
   <dimen name="text_size_dialog">20sp</dimen>
   <dimen name="progress_length">45dp</dimen>
+  <dimen name="login_input_length">48dp</dimen>
 </resources>

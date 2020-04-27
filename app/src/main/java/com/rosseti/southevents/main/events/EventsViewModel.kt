@@ -28,7 +28,7 @@ class EventsViewModel(
     init {
         response.addSource(networkUtil, Observer {
             if (!networkUtil.isInternetAvailable()) {
-                response.value = EventsViewState.ShowRequestError(
+                response.value = EventsViewState.ShowNetworkError(
                     R.string.error_internet,
                     NoNetworkException(Throwable())
                 )
@@ -66,7 +66,7 @@ class EventsViewModel(
             if (contentFeed.isNotEmpty()) {
                 response.value = EventsViewState.ShowContentFeed(contentFeed)
             } else {
-                response.value = EventsViewState.ShowRequestError(
+                response.value = EventsViewState.ShowNetworkError(
                     R.string.error_internet,
                     NoNetworkException(Throwable())
                 )
@@ -79,22 +79,21 @@ class EventsViewModel(
     private fun handleError(error: Throwable) {
         when (error) {
             is NoNetworkException -> {
-                response.value = EventsViewState.ShowRequestError(R.string.error_internet, error)
+                response.value = EventsViewState.ShowNetworkError(R.string.error_internet, error)
                 Log.e(TAG,"Internet not available. ${error.message}")
             }
             is ServerUnreachableException -> {
-                response.value = EventsViewState.ShowRequestError(R.string.error_request, error)
+                response.value = EventsViewState.ShowNetworkError(R.string.error_request, error)
                 Log.e(TAG,"Server is unreachable. ${error.message}")
             }
             is HttpCallFailureException -> {
-                response.value = EventsViewState.ShowRequestError(R.string.error_request, error)
+                response.value = EventsViewState.ShowNetworkError(R.string.error_request, error)
                 Log.e(TAG,"Call failed. ${error.message}")
             }
             else -> {
-                response.value = EventsViewState.ShowRequestError(R.string.error_request)
+                response.value = EventsViewState.ShowNetworkError(R.string.error_request)
                 Log.e(TAG,"Error: ${error.message}.")
             }
         }
     }
-
 }

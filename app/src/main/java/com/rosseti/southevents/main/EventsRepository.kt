@@ -20,6 +20,13 @@ class EventsRepository @Inject constructor(
             .observeOn(rxSchedulers.main)
     }
 
+    fun requestEventCheckIn(checkInRequest: CheckInRequest): Single<CheckInResponse> {
+        return api.requestEventCheckIn(checkInRequest)
+            .compose(mapNetworkErrors())
+            .subscribeOn(rxSchedulers.network)
+            .observeOn(rxSchedulers.main)
+    }
+
     private fun <R> mapNetworkErrors() = {
             single: Single<R> ->
         single.onErrorResumeNext {

@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.rosseti.southevents.R
+import com.rosseti.southevents.data.Cache.contendDetail
 import com.rosseti.southevents.dialog.ProgressDialog
 import com.rosseti.southevents.main.model.Event
 import com.rosseti.southevents.main.model.NoNetworkException
@@ -51,12 +51,12 @@ class EventsFragment : DaggerFragment() {
           progressDialog.hide()
           updateAdapter(it.events)
         }
-        is EventsViewState.ShowRequestError -> {
+        is EventsViewState.ShowNetworkError -> {
           progressDialog.hide()
           snackbar = Snackbar.make(
             view,
             it.message,
-            if (it.networkException is NoNetworkException) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_INDEFINITE)
+            if (it.networkException is NoNetworkException) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG)
           snackbar.setAction("Action", null).show()
         }
       }
@@ -71,16 +71,8 @@ class EventsFragment : DaggerFragment() {
     val mainAdapter = EventsAdapter(events)
     recyclerView.adapter = mainAdapter
     mainAdapter?.onItemClick = { it -> run {
-      var bundle = bundleOf(
-        "title" to it.title,
-        "description" to it.description,
-        "image" to it.image,
-        "price" to it.price,
-        "latitude" to it.latitude,
-        "longitude" to it.longitude,
-        "date" to it.date
-      )
-      findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
+      contendDetail = it
+      findNavController().navigate(R.id.action_EventsFragment_to_DetailsFragment)
     }
     }
   }

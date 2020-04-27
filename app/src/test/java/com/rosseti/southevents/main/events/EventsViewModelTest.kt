@@ -61,7 +61,7 @@ class EventsViewModelTest {
         every { eventsRepository.loadEvents() } throws NetworkException(Throwable())
 
         val response= viewModel.fetchEvents()
-        Assert.assertEquals("Should return ShowRequestError with the error message.", EventsViewState.ShowRequestError(R.string.error_request), response)
+        Assert.assertEquals("Should return ShowRequestError with the error message.", EventsViewState.ShowNetworkError(R.string.error_request), response)
     }
 
     @Test
@@ -71,9 +71,9 @@ class EventsViewModelTest {
 
         val response: EventsViewState = viewModel.fetchEvents()!!
         print("MESSAGE: $response")
-        Assert.assertTrue("Should return ShowRequestError state view.", response is EventsViewState.ShowRequestError)
+        Assert.assertTrue("Should return ShowRequestError state view.", response is EventsViewState.ShowNetworkError)
 
-        response as EventsViewState.ShowRequestError
+        response as EventsViewState.ShowNetworkError
 
         Assert.assertTrue("Should return NoNetworkException.", response.networkException is NoNetworkException)
         Assert.assertEquals("Should return the no-network message error.", response.message, R.string.error_internet)

@@ -3,8 +3,6 @@ package com.rosseti.southevents.animation
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import androidx.core.view.isVisible
 
 object ViewAnimation {
@@ -45,7 +43,7 @@ object ViewAnimation {
     }
 
     fun init(v: View) {
-        v.visibility = GONE
+        v.isVisible = false
         v.translationY = v.height.toFloat()
         v.alpha = 0f
     }
