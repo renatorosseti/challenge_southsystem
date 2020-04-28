@@ -110,6 +110,7 @@ class EventDetailsViewModelTest {
         every { bundle.getBoolean("checkIn") } returns true
         every { bundle.getString("name") } returns name
         every { bundle.getString("email") } returns email
+        every { bundle.clear() } returns Unit
 
         val response = viewModel.handleBundleData(bundle)
         Assert.assertEquals("Should return ShowCheckInSucceed status when check-in form is filled up.", EventDetailsViewState.ShowCheckInSucceed, response)
