@@ -21,11 +21,10 @@ class EventsRepository @Inject constructor(
     }
 
     fun requestEventCheckIn(checkInRequest: CheckInRequest): Single<CheckInResponse> {
-//        return api.requestEventCheckIn(checkInRequest)
-//            .compose(mapNetworkErrors())
-//            .subscribeOn(rxSchedulers.network)
-//            .observeOn(rxSchedulers.main)
-        return Single.just(CheckInResponse("2"))
+        return api.requestEventCheckIn(checkInRequest)
+            .compose(mapNetworkErrors())
+            .subscribeOn(rxSchedulers.network)
+            .observeOn(rxSchedulers.main)
     }
 
     private fun <R> mapNetworkErrors() = {
