@@ -4,5 +4,6 @@ import dagger.Module
 
 @Module(includes = [
     SchedulerModule::class,
-    NetworkModule::class])
+    NetworkModule::class,
+    DialogModule::class])
 class AppModule

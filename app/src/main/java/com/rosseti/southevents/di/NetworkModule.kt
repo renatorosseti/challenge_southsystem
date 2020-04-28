@@ -2,7 +2,6 @@ package com.rosseti.southevents.di
 
 import com.rosseti.southevents.SouthEventsApp
 import com.rosseti.southevents.api.Api
-import com.rosseti.southevents.dialog.ProgressDialog
 import com.rosseti.southevents.util.NetworkUtil
 import dagger.Module
 import dagger.Provides
@@ -22,7 +21,4 @@ class NetworkModule {
 
     @Provides
     fun providesNetworkUtil(application: SouthEventsApp) = NetworkUtil(application)
-
-    @Provides
-    fun providesProgressDialog() = ProgressDialog()
 }

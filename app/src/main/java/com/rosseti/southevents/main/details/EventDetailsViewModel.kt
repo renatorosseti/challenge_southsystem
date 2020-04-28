@@ -46,9 +46,10 @@ class EventDetailsViewModel(
 
         val hasEventChecked: Boolean? = arguments?.getBoolean("checkIn")
         if (hasEventChecked != null && hasEventChecked) {
-            val name = argString("name")
-            val email = argString("email")
+            val name: String? = argString("name")
+            val email: String? = argString("email")
             requestCheckIn(eventId = contendDetail.id, name = name!!, email = email!!)
+            arguments.clear()
         }
 
         return response.value

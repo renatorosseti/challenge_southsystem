@@ -18,6 +18,7 @@ import java.util.*
 import javax.inject.Inject
 import androidx.lifecycle.Observer
 import com.rosseti.southevents.data.Cache.contendDetail
+import com.rosseti.southevents.dialog.MessageDialog
 import com.rosseti.southevents.main.model.NoNetworkException
 import java.text.SimpleDateFormat
 
@@ -28,6 +29,9 @@ class EventDetailsFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModel: EventDetailsViewModel
+
+    @Inject
+    lateinit var dialog: MessageDialog
 
     private var isRotate = false
 
@@ -118,7 +122,7 @@ class EventDetailsFragment : DaggerFragment() {
                     progressDialog.show(requireContext())
                 }
                 is EventDetailsViewState.ShowCheckInSucceed -> {
-
+                    dialog.show(context = requireContext(), message = getString(R.string.succeed_check_in))
                 }
                 is EventDetailsViewState.ShowNetworkError -> {
                     progressDialog.hide()
