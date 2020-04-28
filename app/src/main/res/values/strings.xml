@@ -1,0 +1,18 @@
+<resources>
+  <string name="app_name">SouthEvents</string>
+  <!-- Strings used for fragments for navigation -->
+  <string name="events_fragment_label">Events</string>
+  <string name="event_details_label">Event details</string>
+  <!-- Error alert message -->
+  <string name="error_request">Request error, try again later!</string>
+  <string name="error_internet">You are currently set to offline, please go online to connect to SouthEvents.</string>
+  <!-- Dialog -->
+  <string name="progress_message">Please wait...</string>
+  <string name="ok">ok</string>
+  <!-- Check-in -->
+  <string name="check_in_label">Check-in</string>
+  <string name="name">Name</string>
+  <string name="email">Email</string>
+  <string name="error_check_in">Please fill out your name and email and try again!</string>
+  <string name="succeed_check_in">Congratulations! Your check-in has been successful!</string>
+</resources>
