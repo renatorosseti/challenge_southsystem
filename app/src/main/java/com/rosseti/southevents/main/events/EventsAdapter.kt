@@ -36,8 +36,7 @@ class EventsAdapter(
             Glide.with(itemView)
                 .load(event.image)
                 .centerCrop()
-                .error(R.mipmap.ic_launcher)
-                .apply(RequestOptions().placeholder(R.drawable.ic_image_placeholder))
+                .apply(RequestOptions().placeholder(R.mipmap.ic_event_foreground))
                 .into(itemView.contentImageView)
         }
     }

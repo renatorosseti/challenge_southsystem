@@ -60,7 +60,7 @@ class EventDetailsFragment : DaggerFragment() {
     private fun setUiView() {
         Glide.with(this)
             .load(contendDetail.image)
-            .apply(RequestOptions().placeholder(R.drawable.ic_image_placeholder))
+            .apply(RequestOptions().placeholder(R.mipmap.ic_event_foreground))
             .into(detailsImageView)
 
         titleTextView.text = contendDetail.title
