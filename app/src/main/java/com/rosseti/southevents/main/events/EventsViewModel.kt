@@ -80,19 +80,19 @@ class EventsViewModel(
         when (error) {
             is NoNetworkException -> {
                 response.value = EventsViewState.ShowNetworkError(R.string.error_internet, error)
-                Log.e(TAG,"Internet not available. ${error.message}")
+                Log.e(TAG, "Internet not available. ${error.message}")
             }
             is ServerUnreachableException -> {
                 response.value = EventsViewState.ShowNetworkError(R.string.error_request, error)
-                Log.e(TAG,"Server is unreachable. ${error.message}")
+                Log.e(TAG, "Server is unreachable. ${error.message}")
             }
             is HttpCallFailureException -> {
                 response.value = EventsViewState.ShowNetworkError(R.string.error_request, error)
-                Log.e(TAG,"Call failed. ${error.message}")
+                Log.e(TAG, "Call failed. ${error.message}")
             }
             else -> {
                 response.value = EventsViewState.ShowNetworkError(R.string.error_request)
-                Log.e(TAG,"Error: ${error.message}.")
+                Log.e(TAG, "Error: ${error.message}.")
             }
         }
     }

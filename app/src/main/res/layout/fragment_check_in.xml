@@ -29,8 +29,9 @@
         style="@style/inputCheckIn"
         android:id="@+id/submitCheckIn"
         android:layout_marginTop="@dimen/horizontal_margin"
-        android:text="Submit"
-        android:textColor="@color/colorPrimary"
+        android:text="@string/check_in_label"
+        android:textColor="@android:color/background_light"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText"/>

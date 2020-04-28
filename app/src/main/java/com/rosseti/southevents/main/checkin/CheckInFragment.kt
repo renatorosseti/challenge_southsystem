@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.rosseti.southevents.R
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_check_in.*
@@ -29,6 +30,12 @@ class CheckInFragment : DaggerFragment() {
                     "name" to nameEditText.text.toString(),
                     "email" to emailEditText.text.toString())
                 findNavController().navigate(R.id.action_CheckInFragment_to_DetailsFragment, bundle)
+            } else {
+                var snackbar = Snackbar.make(
+                    view,
+                    getString(R.string.error_check_in),
+                    Snackbar.LENGTH_LONG)
+                snackbar.setAction("Action", null).show()
             }
         }
     }

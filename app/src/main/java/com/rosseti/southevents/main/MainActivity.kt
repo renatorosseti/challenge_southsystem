@@ -19,7 +19,6 @@ class MainActivity : DaggerAppCompatActivity() {
     navController.addOnDestinationChangedListener(NavController.OnDestinationChangedListener { controller, destination, arguments ->
       supportActionBar?.setDisplayHomeAsUpEnabled(destination.id != R.id.EventsFragment)
     })
-
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {

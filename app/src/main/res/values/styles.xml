@@ -29,4 +29,12 @@
     <item name="android:background">@drawable/rounded_shape</item>
   </style>
 
+  <style name="textEventDetails">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginRight">@dimen/horizontal_margin</item>
+    <item name="android:layout_marginLeft">@dimen/horizontal_margin</item>
+    <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+  </style>
+
 </resources>

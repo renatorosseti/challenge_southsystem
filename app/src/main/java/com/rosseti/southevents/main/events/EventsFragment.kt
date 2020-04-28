@@ -56,7 +56,8 @@ class EventsFragment : DaggerFragment() {
           snackbar = Snackbar.make(
             view,
             it.message,
-            if (it.networkException is NoNetworkException) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG)
+            if (it.networkException is NoNetworkException) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
+          )
           snackbar.setAction("Action", null).show()
         }
       }

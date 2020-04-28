@@ -11,7 +11,8 @@ import com.rosseti.southevents.main.model.Event
 import kotlinx.android.synthetic.main.content_item.view.*
 
 class EventsAdapter(
-    private val events: List<Event>) : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
+    private val events: List<Event>
+) : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
 
     var onItemClick: ((Event) -> Unit)? = null
 
