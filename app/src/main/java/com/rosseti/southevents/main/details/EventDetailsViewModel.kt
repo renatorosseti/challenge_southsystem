@@ -60,38 +60,6 @@ class EventDetailsViewModel(
         disposable.clear()
     }
 
-    fun navigateToLocationEvent(context: Context, event: Event): EventDetailsViewState? {
-        val gmmIntentUri: Uri = Uri.parse("geo:${event.latitude},${event.longitude}")
-        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-        mapIntent.setPackage("com.google.android.apps.maps")
-        if (mapIntent.resolveActivity(context?.packageManager) != null) {
-            context.startActivity(mapIntent)
-        }
-        response.value = EventDetailsViewState.RefreshEventDetails
-        return response.value
-    }
-
-    fun navigateToSharingEvent(context: Context, event: Event): EventDetailsViewState? {
-        response.value = EventDetailsViewState.ShowLoadingState
-
-        if (networkUtil.isInternetAvailable()) {
-            val shareIntent = Intent(Intent.ACTION_SEND)
-            val message =
-                "${event.title}\n\n${event.description}\n\nR$${event.price}\n\n${event.image}"
-            shareIntent.type = "text/plain"
-            shareIntent.putExtra(Intent.EXTRA_TEXT, message)
-            context.startActivity(Intent.createChooser(shareIntent, "Share event using"))
-            response.value = EventDetailsViewState.RefreshEventDetails
-        } else {
-            response.value = EventDetailsViewState.ShowNetworkError(
-                R.string.error_internet,
-                NoNetworkException(Throwable())
-            )
-        }
-
-        return response.value
-    }
-
     fun requestCheckIn(eventId: String, name: String, email: String): EventDetailsViewState? {
         response.value = EventDetailsViewState.ShowLoadingState
 

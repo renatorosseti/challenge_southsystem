@@ -92,10 +92,10 @@ class EventDetailsFragment : DaggerFragment() {
             findNavController().navigate(R.id.action_DetailsFragment_to_CheckInFragment)
         }
         fabLocation.setOnClickListener {
-            viewModel.navigateToLocationEvent(context = requireContext(), event = contendDetail)
+            navigateToLocationEvent(event = contendDetail)
         }
         fabShare.setOnClickListener {
-            viewModel.navigateToSharingEvent(context = requireContext(), event = contendDetail)
+            navigateToSharingEvent(event = contendDetail)
         }
     }
 
@@ -135,5 +135,28 @@ class EventDetailsFragment : DaggerFragment() {
                 }
             }
         })
+    }
+
+    private fun navigateToLocationEvent(event: Event) {
+        val labelLocation = "Location name"
+        val urlAddress = "http://maps.google.com/maps?q=${event.latitude},${event.longitude}(${labelLocation})&iwloc=A&hl=es"
+        val gmmIntentUri: Uri = Uri.parse(urlAddress)
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        if (mapIntent.resolveActivity(context?.getPackageManager()) != null) {
+            startActivity(mapIntent)
+        }
+    }
+
+    private fun navigateToSharingEvent(event: Event) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.addFlags(Intent.FLAG_GRANT_PREFIX_URI_PERMISSION)
+        val message =
+                "${event.title}\n\n${event.description}\n\nR$${event.price}\n\n${event.image}"
+        Log.i("TAG", "Message: $message")
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, message)
+        startActivity(Intent.createChooser(intent, "Compartilhar com"))
     }
 }

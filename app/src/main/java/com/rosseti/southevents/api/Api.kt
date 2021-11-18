@@ -10,7 +10,7 @@ import retrofit2.http.POST
 
 interface Api {
     companion object {
-        const val URL = "https://5b840ba5db24a100142dcd8c.mockapi.io/api/"
+        const val URL = "https://6195587074c1bd00176c6cff.mockapi.io/api/v1/"
     }
 
     @GET("events")
